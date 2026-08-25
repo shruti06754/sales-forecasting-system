@@ -389,8 +389,3 @@ print("Files saved:")
 print("- sales_forecast_30_days.csv")
 print("- actual_vs_predicted.csv")
 
-from google.colab import files
-
-files.download("sales_forecast_30_days.csv")
-
-files.download("actual_vs_predicted.csv")
