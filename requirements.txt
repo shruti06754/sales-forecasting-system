@@ -3,5 +3,4 @@ pandas
 numpy
 sklearn
 matplotlib
-seaborn
-files
+
