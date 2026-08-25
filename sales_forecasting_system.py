@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 pd.set_option('display.max_columns', None)
-print("Libraries loaded successfully.")
+st.write("Libraries loaded successfully.")
 
 USE_UPLOADED_CSV = False
 if USE_UPLOADED_CSV:
@@ -13,7 +13,7 @@ if USE_UPLOADED_CSV:
   uploaded =files.upload()
   filename = next(iter(uploaded))
   df_raw = pd.read_csv(filename)
-  print("Uploaded:", filename)
+  st.write("Uploaded:", filename)
 else:
 
    np.random.seed(42)
@@ -61,9 +61,9 @@ df = df.drop_duplicates()
 df = df.groupby("Date", as_index=False)["Sales"].sum()
 df = df.sort_values("Date").reset_index(drop=True)
 
-print("Rows after cleaning:", len(df))
-print("Missing values:")
-print(df.isna().sum())
+st.write("Rows after cleaning:", len(df))
+st.write("Missing values:")
+st.write(df.isna().sum())
 df.head()
 
 plt.figure(figsize=(14,5))
@@ -84,10 +84,10 @@ plt.ylabel("Total Sales")
 plt.grid(alpha=0.2)
 plt.show()
 
-print("Highest sales date:", df.loc[df["Sales"].idxmax(), "Date"])
-print("“Highest sales value:", round(df["Sales"].max(), 2))
-print("Lowest sales date:", df.loc[df["Sales"].idxmin(), "Date"])
-print("Lowest sales value:", round(df["Sales"].min(), 2))
+st.write("Highest sales date:", df.loc[df["Sales"].idxmax(), "Date"])
+st.write("“Highest sales value:", round(df["Sales"].max(), 2))
+st.write("Lowest sales date:", df.loc[df["Sales"].idxmin(), "Date"])
+st.write("Lowest sales value:", round(df["Sales"].min(), 2))
 
 
 data = df.copy()
@@ -132,7 +132,7 @@ X = data[features]
 
 y = data["Sales"]
 
-print("Features:", features)
+st.write("Features:", features)
 
 data.head()
 
@@ -159,9 +159,9 @@ model = RandomForestRegressor(
 
 model.fit(X_train, y_train)
 
-print("Model trained successfully.")
-print("Training rows:", len(X_train))
-print("Testing rows:", len(X_test))
+st.write("Model trained successfully.")
+st.write("Training rows:", len(X_train))
+st.write("Testing rows:", len(X_test))
 
 
 
@@ -216,8 +216,8 @@ rmse = np.sqrt(
     mean_squared_error(y_test, test_pred)
 )
 
-print(f"MAE  : {mae:,.2f}")
-print(f"RMSE : {rmse:,.2f}")
+st.write(f"MAE  : {mae:,.2f}")
+st.write(f"RMSE : {rmse:,.2f}")
 
 
 
@@ -317,7 +317,7 @@ plt.show()
 
 average_sales = future_forecast["Predicted_Sales"].mean()
 
-print(
+st.write(
     "Average predicted sales for next 30 days:",
     round(average_sales, 2)
 )
@@ -334,6 +334,6 @@ comparison.to_csv(
     index=False
 )
 
-print("Files saved:")
-print("- sales_forecast_30_days.csv")
-print("- actual_vs_predicted.csv")
+st.write("Files saved:")
+st.write("- sales_forecast_30_days.csv")
+st.write("- actual_vs_predicted.csv")
